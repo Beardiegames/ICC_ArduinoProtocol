@@ -9,6 +9,7 @@ bool data_out[BUTTON_COUNT] = { false, false, false, false, false };
 
 int iter = 0;
 bool state_changed = true;
+char data_str[9] = "0,0,0,0,0";
 
 
 void setup() {
@@ -42,11 +43,13 @@ void readButtonStates() {
 
 void sendData() {
   iter = 0;
-  while (iter < OUT_COUNT) {
-    Serial.print(data_out[iter]);
-    Serial.print(",");
-    iter ++;
+  for (iter = 0; iter < 7; iter += 2) {
+    data_str[iter] = data_out[iter] ? "1" : "0";
+    data_str[iter + 1] = ",";
   }
-  Serial.println(data_out[OUT_COUNT]);
+  data_str[9] = data_out[9] ? "1" : "0";
+  
+  Serial.flush();
+  Serial.println(data_str);
   state_changed = false;
 }
