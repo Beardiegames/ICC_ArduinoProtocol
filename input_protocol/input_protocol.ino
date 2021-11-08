@@ -1,15 +1,26 @@
 
+// SET BUTTON PINOUT HERE..
+const int LEFT_BUTTON_PIN = A0;
+const int UP_BUTTON_PIN = A1;
+const int DOWN_BUTTON_PIN = A2;
+const int RIGHT_BUTTON_PIN = A3;
+const int START_BUTTON_PIN = A4;
+
+
 const int BUTTON_COUNT = 5;
 const int OUT_COUNT = BUTTON_COUNT - 1;
-
-const int BUTTON[BUTTON_COUNT] = { A0, A1, A2, A3, A4 };
+const int BUTTON[BUTTON_COUNT] = { 
+  LEFT_BUTTON_PIN,
+  UP_BUTTON_PIN,
+  DOWN_BUTTON_PIN,
+  RIGHT_BUTTON_PIN,
+  START_BUTTON_PIN,
+};
 
 bool state[BUTTON_COUNT] = { false, false, false, false, false };
 bool data_out[BUTTON_COUNT] = { false, false, false, false, false };
-
 int iter = 0;
 bool state_changed = true;
-
 
 void setup() {
   setupButtons();
