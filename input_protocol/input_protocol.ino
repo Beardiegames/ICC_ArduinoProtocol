@@ -21,6 +21,7 @@ bool state[BUTTON_COUNT] = { false, false, false, false, false };
 bool data_out[BUTTON_COUNT] = { false, false, false, false, false };
 int iter = 0;
 bool state_changed = true;
+char data_str[] = "0,0,0,0,0";
 
 void setup() {
   setupButtons();
@@ -52,12 +53,16 @@ void readButtonStates() {
 }
 
 void sendData() {
-  iter = 0;
-  while (iter < OUT_COUNT) {
-    Serial.print(data_out[iter]);
-    Serial.print(",");
-    iter ++;
-  }
-  Serial.println(data_out[OUT_COUNT]);
+  Serial.flush();
+  Serial.print(data_out[0]);
+  Serial.print(",");
+  Serial.print(data_out[1]);
+  Serial.print(",");
+  Serial.print(data_out[2]);
+  Serial.print(",");
+  Serial.print(data_out[3]);
+  Serial.print(",");
+  Serial.println(data_out[4]);
   state_changed = false;
+  delay(20);
 }
